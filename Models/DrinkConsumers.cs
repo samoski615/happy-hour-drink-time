@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HappyHourTracker.Models
 {
-    public class Alcoholics
+    public class DrinkConsumers
     {
     }
 }
