@@ -17,18 +17,28 @@ namespace HappyHourTracker.Models
         [Display(Name = "Address")]
         public string address { get; set; }
 
-        [Display(Name = "Drink Specials")]
-        public string drinkSpecials { get; set; }
+        public enum DayOfWeek { };
 
         [Display(Name = "Atmosphere")]
         public string atmosphere { get; set; }
 
-        [Display(Name = "Price Range")]
-        public string priceRange { get; set; }
+        [Display(Name = "Rating")]
+        public string rating { get; set; }
 
-        [Display(Name = "Hours")]
-        public string hours { get; set; }
+        [Display(Name = "Open from ")]
+        public string hoursOfOperationStartTime { get; set; }
 
+        [Display(Name = "To ")]
+        public string hoursOfOperationEndTime { get; set; }
+
+        [Display(Name = "Happy Hour start time ")]
+        public string happyHourStartTime { get; set; }
+
+        [Display(Name = "Happy Hour end time ")]
+        public string happyHourEndTime { get; set; }
+
+        [Display(Name = "Potential Customer")]
+        public int potentialCusotmers { get; set; }
 
     }
 }
