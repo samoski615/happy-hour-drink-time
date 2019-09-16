@@ -35,19 +35,19 @@ namespace HappyHourTracker.Models
         public int rating { get; set; }
 
         [Display(Name = "Open from ")]
-        public string hoursOfOperationStartTime { get; set; }
+        public TimeSpan hoursOfOperationStartTime { get; set; }
 
         [Display(Name = "To ")]
-        public string hoursOfOperationEndTime { get; set; }
+        public TimeSpan hoursOfOperationEndTime { get; set; }
 
         [Display(Name = "Happy Hour start time ")]
-        public string happyHourStartTime { get; set; }
+        public TimeSpan happyHourStartTime { get; set; }
 
         [Display(Name = "Happy Hour end time ")]
-        public string happyHourEndTime { get; set; }
+        public TimeSpan happyHourEndTime { get; set; }
 
         [Display(Name = "Potential Customer")]
         public int potentialCusotmers { get; set; }
-
+   
     }
 }

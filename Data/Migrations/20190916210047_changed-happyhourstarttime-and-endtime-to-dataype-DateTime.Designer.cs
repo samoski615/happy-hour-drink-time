@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190916210047_changed-happyhourstarttime-and-endtime-to-dataype-DateTime")]
+    partial class changedhappyhourstarttimeandendtimetodataypeDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,13 +88,13 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("city");
 
-                    b.Property<TimeSpan>("happyHourEndTime");
+                    b.Property<string>("happyHourEndTime");
 
-                    b.Property<TimeSpan>("happyHourStartTime");
+                    b.Property<DateTime>("happyHourStartTime");
 
-                    b.Property<TimeSpan>("hoursOfOperationEndTime");
+                    b.Property<DateTime>("hoursOfOperationEndTime");
 
-                    b.Property<TimeSpan>("hoursOfOperationStartTime");
+                    b.Property<string>("hoursOfOperationStartTime");
 
                     b.Property<int>("potentialCusotmers");
 
