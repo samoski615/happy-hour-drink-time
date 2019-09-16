@@ -10,6 +10,7 @@ namespace HappyHourTracker.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<BarOwner> BarOwners { get; set; }
+        public DbSet<Bar> Bar { get; set; }
         public DbSet<DrinkConsumers> Drinkers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
