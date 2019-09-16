@@ -13,28 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.firstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.lastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                @Html.DisplayNameFor(model => model.address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.city)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StreetAddress)
+                @Html.DisplayNameFor(model => model.state)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZipCode)
+                @Html.DisplayNameFor(model => model.zipcode)
             </th>
             <th></th>
         </tr>
@@ -43,28 +37,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.firstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.lastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                @Html.DisplayFor(modelItem => item.address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.city)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StreetAddress)
+                @Html.DisplayFor(modelItem => item.state)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
+                @Html.DisplayFor(modelItem => item.zipcode)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

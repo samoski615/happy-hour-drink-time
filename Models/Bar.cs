@@ -17,13 +17,22 @@ namespace HappyHourTracker.Models
         [Display(Name = "Address")]
         public string address { get; set; }
 
+        [Display(Name = "City")]
+        public string city { get; set; }
+
+        [Display(Name = "State")]
+        public string state { get; set; }
+
+        [Display(Name = "Zipcode")]
+        public int zipcode { get; set; }
+
         public enum DayOfWeek { };
 
         [Display(Name = "Atmosphere")]
         public string atmosphere { get; set; }
 
         [Display(Name = "Rating")]
-        public string rating { get; set; }
+        public int rating { get; set; }
 
         [Display(Name = "Open from ")]
         public string hoursOfOperationStartTime { get; set; }
