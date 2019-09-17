@@ -26,34 +26,32 @@ namespace HappyHourTracker.Models
         [Display(Name = "Zipcode")]
         public int zipcode { get; set; }
 
-        public enum DayOfWeek { };
+        [Display(Name = "Day of the Week")]
+        public DayOfWeek weekDay { get; set; }
 
-        [Display(Name = "Atmosphere")]
+        [Display(Name = "Type of Alcohol/Drink")]
+        public string typeOfDrink { get; set; }
+
+        [Display(Name = "Type of Bar")]
         public string atmosphere { get; set; }
 
         [Display(Name = "Rating")]
         public int rating { get; set; }
 
         [Display(Name = "Open from ")]
-        public string hoursOfOperationStartTime { get; set; }
+        public TimeSpan barOpen { get; set; }
 
         [Display(Name = "To ")]
-        public string hoursOfOperationEndTime { get; set; }
+        public TimeSpan barClose { get; set; }
 
         [Display(Name = "Happy Hour start time ")]
-        public string happyHourStartTime { get; set; }
+        public TimeSpan happyHourStartTime { get; set; }
 
         [Display(Name = "Happy Hour end time ")]
-        public string happyHourEndTime { get; set; }
+        public TimeSpan happyHourEndTime { get; set; }
 
         [Display(Name = "Potential Customer")]
-        public int potentialCusotmers { get; set; }
-
-        [Display(Name = "Drink Price")]
-        public double DrinkPrice { get; set; }
-
-
-        
+        public int potentialCustomers { get; set; }
+   
     }
-
 }
