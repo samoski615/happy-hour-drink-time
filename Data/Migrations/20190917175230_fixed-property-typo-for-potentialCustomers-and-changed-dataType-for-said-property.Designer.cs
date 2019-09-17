@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190916200241_newMigratoin")]
-    partial class newMigratoin
+    [Migration("20190917175230_fixed-property-typo-for-potentialCustomers-and-changed-dataType-for-said-property")]
+    partial class fixedpropertytypoforpotentialCustomersandchangeddataTypeforsaidproperty
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,8 +80,6 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("DrinkPrice");
-
                     b.Property<string>("address");
 
                     b.Property<string>("atmosphere");
@@ -90,15 +88,15 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("city");
 
-                    b.Property<string>("happyHourEndTime");
+                    b.Property<TimeSpan>("happyHourEndTime");
 
-                    b.Property<string>("happyHourStartTime");
+                    b.Property<TimeSpan>("happyHourStartTime");
 
-                    b.Property<string>("hoursOfOperationEndTime");
+                    b.Property<TimeSpan>("hoursOfOperationEndTime");
 
-                    b.Property<string>("hoursOfOperationStartTime");
+                    b.Property<TimeSpan>("hoursOfOperationStartTime");
 
-                    b.Property<int>("potentialCusotmers");
+                    b.Property<string>("potentialCustomers");
 
                     b.Property<int>("rating");
 
@@ -109,6 +107,21 @@ namespace HappyHourTracker.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Bar");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BarOwners");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>

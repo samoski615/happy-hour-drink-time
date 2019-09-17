@@ -14,6 +14,6 @@ namespace HappyHourTracker.Models
         public string Name { get; set; }
 
         [NotMapped]
-        public bool isBarOwner { get; set; }
+        public bool isSuperAdmin { get; set; }
     }
 }
