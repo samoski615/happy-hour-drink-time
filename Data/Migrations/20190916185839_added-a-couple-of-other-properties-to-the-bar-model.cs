@@ -8,24 +8,24 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.AlterColumn<int>(
                 name: "rating",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "city",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "state",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "zipcode",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -34,19 +34,19 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "city",
-                table: "BarOwner");
+                table: "Bar");
 
             migrationBuilder.DropColumn(
                 name: "state",
-                table: "BarOwner");
+                table: "Bar");
 
             migrationBuilder.DropColumn(
                 name: "zipcode",
-                table: "BarOwner");
+                table: "Bar");
 
             migrationBuilder.AlterColumn<string>(
                 name: "rating",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: true,
                 oldClrType: typeof(int));
         }

@@ -8,32 +8,32 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "priceRange",
-                table: "BarOwner",
+                table: "Bar",
                 newName: "rating");
 
             migrationBuilder.RenameColumn(
                 name: "hours",
-                table: "BarOwner",
+                table: "Bar",
                 newName: "hoursOfOperationStartTime");
 
             migrationBuilder.RenameColumn(
                 name: "drinkSpecials",
-                table: "BarOwner",
+                table: "Bar",
                 newName: "hoursOfOperationEndTime");
 
             migrationBuilder.AddColumn<string>(
                 name: "happyHourEndTime",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "happyHourStartTime",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "potentialCusotmers",
-                table: "BarOwner",
+                table: "Bar",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -42,29 +42,29 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "happyHourEndTime",
-                table: "BarOwner");
+                table: "Bar");
 
             migrationBuilder.DropColumn(
                 name: "happyHourStartTime",
-                table: "BarOwner");
+                table: "Bar");
 
             migrationBuilder.DropColumn(
                 name: "potentialCusotmers",
-                table: "BarOwner");
+                table: "Bar");
 
             migrationBuilder.RenameColumn(
                 name: "rating",
-                table: "BarOwner",
+                table: "Bar",
                 newName: "priceRange");
 
             migrationBuilder.RenameColumn(
                 name: "hoursOfOperationStartTime",
-                table: "BarOwner",
+                table: "Bar",
                 newName: "hours");
 
             migrationBuilder.RenameColumn(
                 name: "hoursOfOperationEndTime",
-                table: "BarOwner",
+                table: "Bar",
                 newName: "drinkSpecials");
         }
     }

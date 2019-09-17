@@ -72,13 +72,11 @@ namespace HappyHourTracker.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+            modelBuilder.Entity("HappyHourTracker.Models.Bar", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("DrinkPrice");
 
                     b.Property<string>("address");
 
@@ -88,15 +86,15 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("city");
 
-                    b.Property<string>("happyHourEndTime");
+                    b.Property<DateTime>("happyHourEndTime");
 
-                    b.Property<string>("happyHourStartTime");
+                    b.Property<DateTime>("happyHourStartTime");
 
-                    b.Property<string>("hoursOfOperationEndTime");
+                    b.Property<DateTime>("hoursOfOperationEndTime");
 
-                    b.Property<string>("hoursOfOperationStartTime");
+                    b.Property<DateTime>("hoursOfOperationStartTime");
 
-                    b.Property<int>("potentialCusotmers");
+                    b.Property<string>("potentialCustomers");
 
                     b.Property<int>("rating");
 
@@ -106,7 +104,22 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BarOwner");
+                    b.ToTable("Bar");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BarOwners");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>

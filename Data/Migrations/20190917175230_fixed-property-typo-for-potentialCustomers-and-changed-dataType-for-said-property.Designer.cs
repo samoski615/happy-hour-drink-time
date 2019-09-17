@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190917135031_changed-TimeSpan-datatypes-back-to-string")]
-    partial class changedTimeSpandatatypesbacktostring
+    [Migration("20190917175230_fixed-property-typo-for-potentialCustomers-and-changed-dataType-for-said-property")]
+    partial class fixedpropertytypoforpotentialCustomersandchangeddataTypeforsaidproperty
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,7 +74,7 @@ namespace HappyHourTracker.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+            modelBuilder.Entity("HappyHourTracker.Models.Bar", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,15 +88,15 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("city");
 
-                    b.Property<string>("happyHourEndTime");
+                    b.Property<TimeSpan>("happyHourEndTime");
 
-                    b.Property<string>("happyHourStartTime");
+                    b.Property<TimeSpan>("happyHourStartTime");
 
-                    b.Property<string>("hoursOfOperationEndTime");
+                    b.Property<TimeSpan>("hoursOfOperationEndTime");
 
-                    b.Property<string>("hoursOfOperationStartTime");
+                    b.Property<TimeSpan>("hoursOfOperationStartTime");
 
-                    b.Property<int>("potentialCusotmers");
+                    b.Property<string>("potentialCustomers");
 
                     b.Property<int>("rating");
 
@@ -106,7 +106,7 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BarOwner");
+                    b.ToTable("Bar");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
