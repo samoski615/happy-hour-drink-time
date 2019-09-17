@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190916184929_added-needed-properties-to-the-bar-model")]
+    partial class addedneededpropertiestothebarmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,35 +80,42 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("DrinkPrice");
-
                     b.Property<string>("address");
 
                     b.Property<string>("atmosphere");
 
                     b.Property<string>("barName");
 
-                    b.Property<string>("city");
+                    b.Property<string>("happyHourEndTime");
 
-                    b.Property<TimeSpan>("happyHourEndTime");
+                    b.Property<string>("happyHourStartTime");
 
-                    b.Property<TimeSpan>("happyHourStartTime");
+                    b.Property<string>("hoursOfOperationEndTime");
 
-                    b.Property<TimeSpan>("hoursOfOperationEndTime");
-
-                    b.Property<TimeSpan>("hoursOfOperationStartTime");
+                    b.Property<string>("hoursOfOperationStartTime");
 
                     b.Property<int>("potentialCusotmers");
 
-                    b.Property<int>("rating");
-
-                    b.Property<string>("state");
-
-                    b.Property<int>("zipcode");
+                    b.Property<string>("rating");
 
                     b.HasKey("Id");
 
                     b.ToTable("Bar");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BarOwners");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>
@@ -115,19 +124,21 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("address");
+                    b.Property<string>("City");
 
-                    b.Property<string>("city");
+                    b.Property<string>("Email");
 
-                    b.Property<int>("favoriteBarType");
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("firstName");
+                    b.Property<string>("LastName");
 
-                    b.Property<string>("lastName");
+                    b.Property<int>("PhoneNumber");
 
-                    b.Property<string>("state");
+                    b.Property<string>("State");
 
-                    b.Property<int>("zipcode");
+                    b.Property<string>("StreetAddress");
+
+                    b.Property<int>("ZipCode");
 
                     b.HasKey("Id");
 
