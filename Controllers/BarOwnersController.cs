@@ -10,11 +10,11 @@ using HappyHourTracker.Models;
 
 namespace HappyHourTracker.Controllers
 {
-    public class BarsController : Controller
+    public class BarOwnersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BarsController(ApplicationDbContext context)
+        public BarOwnersController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace HappyHourTracker.Controllers
         // GET: Bars
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Bar.ToListAsync());
+            return View(await _context.Bars.ToListAsync());
         }
 
         // GET: Bars/Details/5
@@ -33,7 +33,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar
+            var bar = await _context.Bars
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bar == null)
             {
@@ -54,7 +54,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,barName,address,city,state,zipcode,atmosphere,rating,hoursOfOperationStartTime,hoursOfOperationEndTime,happyHourStartTime,happyHourEndTime,potentialCusotmers")] Bar bar)
+        public async Task<IActionResult> Create([Bind("Id, barName, address, city ,state, zipcode, atmosphere, rating, barOpen, barClose, happyHourStartTime, happyHourEndTime, potentialCustomers")] BarOwner bar)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar.FindAsync(id);
+            var bar = await _context.Bars.FindAsync(id);
             if (bar == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,barName,address,city,state,zipcode,atmosphere,rating,hoursOfOperationStartTime,hoursOfOperationEndTime,happyHourStartTime,happyHourEndTime,potentialCusotmers")] Bar bar)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, barName, address, city, state, zipcode, atmosphere, rating, barOpen, barClose, happyHourStartTime, happyHourEndTime, potentialCustomers")] BarOwner bar)
         {
             if (id != bar.Id)
             {
@@ -124,7 +124,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar
+            var bar = await _context.Bars
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bar == null)
             {
@@ -139,15 +139,15 @@ namespace HappyHourTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bar = await _context.Bar.FindAsync(id);
-            _context.Bar.Remove(bar);
+            var bar = await _context.Bars.FindAsync(id);
+            _context.Bars.Remove(bar);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BarExists(int id)
         {
-            return _context.Bar.Any(e => e.Id == id);
+            return _context.Bars.Any(e => e.Id == id);
         }
     }
 }

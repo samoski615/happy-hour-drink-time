@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190916191543_added-property-to-drinkconsumer-model-and-updated-all-views")]
-    partial class addedpropertytodrinkconsumermodelandupdatedallviews
+    [Migration("20190916200241_newMigratoin")]
+    partial class newMigratoin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,8 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("DrinkPrice");
+
                     b.Property<string>("address");
 
                     b.Property<string>("atmosphere");
@@ -107,21 +109,6 @@ namespace HappyHourTracker.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BarOwner");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BarOwners");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>

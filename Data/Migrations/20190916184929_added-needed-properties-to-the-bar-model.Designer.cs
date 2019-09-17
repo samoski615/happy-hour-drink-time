@@ -74,7 +74,7 @@ namespace HappyHourTracker.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("HappyHourTracker.Models.Bar", b =>
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +100,7 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bar");
+                    b.ToTable("BarOwner");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>

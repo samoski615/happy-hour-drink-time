@@ -72,11 +72,13 @@ namespace HappyHourTracker.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("HappyHourTracker.Models.Bar", b =>
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("DrinkPrice");
 
                     b.Property<string>("address");
 
@@ -104,22 +106,7 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bar");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BarOwners");
+                    b.ToTable("BarOwner");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>

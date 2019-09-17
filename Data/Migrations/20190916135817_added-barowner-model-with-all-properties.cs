@@ -41,7 +41,7 @@ namespace HappyHourTracker.Data.Migrations
                 oldMaxLength: 128);
 
             migrationBuilder.CreateTable(
-                name: "Bar",
+                name: "BarOwner",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -96,7 +96,7 @@ namespace HappyHourTracker.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bar");
+                name: "BarOwner");
 
             migrationBuilder.DropTable(
                 name: "BarOwners");

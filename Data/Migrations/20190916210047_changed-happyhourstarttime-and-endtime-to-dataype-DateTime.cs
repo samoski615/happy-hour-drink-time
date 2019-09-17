@@ -9,14 +9,14 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.AlterColumn<DateTime>(
                 name: "hoursOfOperationEndTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "happyHourStartTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
@@ -26,13 +26,13 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "hoursOfOperationEndTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: true,
                 oldClrType: typeof(DateTime));
 
             migrationBuilder.AlterColumn<string>(
                 name: "happyHourStartTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: true,
                 oldClrType: typeof(DateTime));
         }

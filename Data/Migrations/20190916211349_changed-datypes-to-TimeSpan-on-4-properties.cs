@@ -9,26 +9,26 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.AlterColumn<TimeSpan>(
                 name: "hoursOfOperationStartTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<TimeSpan>(
                 name: "hoursOfOperationEndTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(DateTime));
 
             migrationBuilder.AlterColumn<TimeSpan>(
                 name: "happyHourStartTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(DateTime));
 
             migrationBuilder.AlterColumn<TimeSpan>(
                 name: "happyHourEndTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
@@ -38,25 +38,25 @@ namespace HappyHourTracker.Data.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "hoursOfOperationStartTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: true,
                 oldClrType: typeof(TimeSpan));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "hoursOfOperationEndTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(TimeSpan));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "happyHourStartTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: false,
                 oldClrType: typeof(TimeSpan));
 
             migrationBuilder.AlterColumn<string>(
                 name: "happyHourEndTime",
-                table: "Bar",
+                table: "BarOwner",
                 nullable: true,
                 oldClrType: typeof(TimeSpan));
         }
