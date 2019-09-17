@@ -40,11 +40,14 @@ namespace HappyHourTracker.Models
         [Display(Name = "To:")]
         public DateTime hoursOfOperationEndTime { get; set; }
 
+
+        [DisplayFormat(DataFormatString = "Time is {0:t}")]
         [Display(Name = "Happy Hour start time:")]
         public DateTime happyHourStartTime { get; set; }
 
         [Display(Name = "Happy Hour end time:")]
         public DateTime happyHourEndTime { get; set; }
+
 
         [Display(Name = "Potential Customer")]
         public string potentialCustomers { get; set; }
