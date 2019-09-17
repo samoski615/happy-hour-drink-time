@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190916195840_intial")]
+    partial class intial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,23 +86,17 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("barName");
 
-                    b.Property<string>("city");
+                    b.Property<string>("happyHourEndTime");
 
-                    b.Property<DateTime>("happyHourEndTime");
+                    b.Property<string>("happyHourStartTime");
 
-                    b.Property<DateTime>("happyHourStartTime");
+                    b.Property<string>("hoursOfOperationEndTime");
 
-                    b.Property<DateTime>("hoursOfOperationEndTime");
+                    b.Property<string>("hoursOfOperationStartTime");
 
-                    b.Property<DateTime>("hoursOfOperationStartTime");
+                    b.Property<int>("potentialCusotmers");
 
-                    b.Property<string>("potentialCustomers");
-
-                    b.Property<int>("rating");
-
-                    b.Property<string>("state");
-
-                    b.Property<int>("zipcode");
+                    b.Property<string>("rating");
 
                     b.HasKey("Id");
 
@@ -128,40 +124,25 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("address");
+                    b.Property<string>("City");
 
-                    b.Property<string>("city");
+                    b.Property<string>("Email");
 
-                    b.Property<string>("favoriteBarType");
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("firstName");
+                    b.Property<string>("LastName");
 
-                    b.Property<string>("lastName");
+                    b.Property<int>("PhoneNumber");
 
-                    b.Property<string>("state");
+                    b.Property<string>("State");
 
-                    b.Property<int>("zipcode");
+                    b.Property<string>("StreetAddress");
+
+                    b.Property<int>("ZipCode");
 
                     b.HasKey("Id");
 
                     b.ToTable("Drinkers");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationId");
-
-                    b.Property<string>("drink");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
-
-                    b.ToTable("DrinkSpecials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -272,13 +253,6 @@ namespace HappyHourTracker.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>
-                {
-                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
