@@ -43,15 +43,15 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            public string Name { get; set; }
+            //[Required]
+            //public string Name { get; set; }
 
-            [Required]
-            [Display(Name = "Phone Number")]
-            public string PhoneNumber { get; set; }
+            //[Required]
+            //[Display(Name = "Phone Number")]
+            //public string PhoneNumber { get; set; }
 
-            [Display(Name = "Super Admin")]
-            public bool isSuperAdmin { get; set; }
+            [Display(Name = "Bar Owner")]
+            public bool isBarOwner { get; set; }
 
             [Required]
             [EmailAddress]
@@ -68,6 +68,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            public bool IsBarOwner { get; internal set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -82,26 +83,26 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, PhoneNumber = Input.PhoneNumber };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
-                {
-                    if (!await _roleManager.RoleExistsAsync(StaticDetails.AdminEndUser))
+                { 
+                    if (!await _roleManager.RoleExistsAsync(StaticDetails.BarOwner))
                     {
-                        await _roleManager.CreateAsync(new IdentityRole(StaticDetails.AdminEndUser));
+                        await _roleManager.CreateAsync(new IdentityRole(StaticDetails.BarOwner));
                     }
-                    if (!await _roleManager.RoleExistsAsync(StaticDetails.SuperAdminEndUser))
+                    if (!await _roleManager.RoleExistsAsync(StaticDetails.DrinkConsumer))
                     {
-                        await _roleManager.CreateAsync(new IdentityRole(StaticDetails.SuperAdminEndUser));
+                        await _roleManager.CreateAsync(new IdentityRole(StaticDetails.DrinkConsumer));
                     }
 
-                    if (Input.isSuperAdmin)
+                    if (Input.IsBarOwner)
                     {
-                        await _userManager.AddToRoleAsync(user, StaticDetails.SuperAdminEndUser);
+                        await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, StaticDetails.AdminEndUser);
+                        await _userManager.AddToRoleAsync(user, StaticDetails.DrinkConsumer);
                     }
                     _logger.LogInformation("User created a new account with password.");
 
