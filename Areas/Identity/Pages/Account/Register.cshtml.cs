@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using HappyHourTracker.Data;
 using HappyHourTracker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace HappyHourTracker.Areas.Identity.Pages.Account
@@ -21,25 +24,29 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
+            _context = context;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+        public object ViewBag { get; private set; }
 
         public class InputModel
         {
@@ -74,6 +81,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
         public void OnGet(string returnUrl = null)
         {
             //this is the GET handler
+            ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name", "-----Select------");
             ReturnUrl = returnUrl;
         }
 
@@ -105,6 +113,9 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, StaticDetails.DrinkConsumer);
                     }
                     _logger.LogInformation("User created a new account with password.");
+
+                    ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
+
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
