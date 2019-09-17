@@ -26,8 +26,6 @@ namespace HappyHourTracker.Models
         [Display(Name = "Zipcode")]
         public int zipcode { get; set; }
 
-        public enum DayOfWeek { };
-
         [Display(Name = "Atmosphere")]
         public string atmosphere { get; set; }
 
@@ -35,19 +33,21 @@ namespace HappyHourTracker.Models
         public int rating { get; set; }
 
         [Display(Name = "Open from ")]
-        public TimeSpan hoursOfOperationStartTime { get; set; }
+        public string hoursOfOperationStartTime { get; set; }
 
         [Display(Name = "To ")]
-        public TimeSpan hoursOfOperationEndTime { get; set; }
+        public string hoursOfOperationEndTime { get; set; }
 
         [Display(Name = "Happy Hour start time ")]
-        public TimeSpan happyHourStartTime { get; set; }
+        public string happyHourStartTime { get; set; }
 
         [Display(Name = "Happy Hour end time ")]
-        public TimeSpan happyHourEndTime { get; set; }
+        public string happyHourEndTime { get; set; }
 
         [Display(Name = "Potential Customer")]
         public int potentialCusotmers { get; set; }
-   
+        public enum DayOfWeek { };
+
+
     }
 }
