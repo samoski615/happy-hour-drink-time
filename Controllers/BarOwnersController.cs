@@ -13,9 +13,11 @@ namespace HappyHourTracker.Controllers
     public class BarsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        BarOwner barOwner;
 
         public BarsController(ApplicationDbContext context)
         {
+            barOwner = new BarOwner();
             _context = context;
         }
 
@@ -117,14 +119,16 @@ namespace HappyHourTracker.Controllers
         }
 
 
-        //public async void PotentialCustomers() //when people click the the check in box, the potential customers property in bar model will increment
-        //{//the method will be a bool, if checked = true else = false, if true add, else leave it alone
-        //    foreach(DrinkConsumers consumer in consumerList)
-        //    {
-        //        if(consumer.CheckInStatus == true)
-        //        PotentialCustomers++;
-        //    }
-        //}
+        public async void PossibleCustomers(List<DrinkConsumers> drinker) //when people click the the check in box, the potential customers property in bar model will increment
+        {//the method will be a bool, if checked = true else = false, if true add, else leave it alone
+            foreach (DrinkConsumers consumer in drinker)
+            {
+                if (consumer.CheckInStatus == true)
+                {
+                    barOwner.PotentialCustomers++;
+                }
+            }
+        }
 
 
 

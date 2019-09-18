@@ -31,8 +31,7 @@ namespace HappyHourTracker.Models
 
         public string Zipcode { get; set; }
 
-        [Display(Name = "Number of customers who've checked in: ")]
-        public bool CheckinStatus { get; set; }
+     
 
     }
 }
