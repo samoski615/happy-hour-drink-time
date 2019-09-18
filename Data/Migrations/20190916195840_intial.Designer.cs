@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190916195840_intial")]
+    partial class intial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,19 +86,17 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("barName");
 
-                    b.Property<string>("city");
+                    b.Property<string>("happyHourEndTime");
+
+                    b.Property<string>("happyHourStartTime");
 
                     b.Property<string>("hoursOfOperationEndTime");
 
                     b.Property<string>("hoursOfOperationStartTime");
 
-                    b.Property<int>("potentialCustomers");
+                    b.Property<int>("potentialCusotmers");
 
-                    b.Property<int>("rating");
-
-                    b.Property<string>("state");
-
-                    b.Property<int>("zipcode");
+                    b.Property<string>("rating");
 
                     b.HasKey("Id");
 
@@ -124,48 +124,25 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("address");
+                    b.Property<string>("City");
 
-                    b.Property<string>("city");
+                    b.Property<string>("Email");
 
-                    b.Property<string>("favoriteBarType");
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("firstName");
+                    b.Property<string>("LastName");
 
-                    b.Property<string>("lastName");
+                    b.Property<int>("PhoneNumber");
 
-                    b.Property<string>("state");
+                    b.Property<string>("State");
 
-                    b.Property<int>("zipcode");
+                    b.Property<string>("StreetAddress");
+
+                    b.Property<int>("ZipCode");
 
                     b.HasKey("Id");
 
                     b.ToTable("Drinkers");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationId");
-
-                    b.Property<string>("DayOfTheWeek");
-
-                    b.Property<double>("DrinkPrice");
-
-                    b.Property<string>("MainTypeOfAlcohol");
-
-                    b.Property<string>("TimeHappyHourEnds");
-
-                    b.Property<string>("TimeHappyHourStarts");
-
-                    b.Property<string>("TypeOfdrink");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DrinkSpecials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

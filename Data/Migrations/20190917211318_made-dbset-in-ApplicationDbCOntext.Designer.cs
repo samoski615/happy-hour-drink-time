@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190917211318_made-dbset-in-ApplicationDbCOntext")]
+    partial class madedbsetinApplicationDbCOntext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,11 +88,15 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("city");
 
-                    b.Property<string>("hoursOfOperationEndTime");
+                    b.Property<DateTime>("happyHourEndTime");
 
-                    b.Property<string>("hoursOfOperationStartTime");
+                    b.Property<DateTime>("happyHourStartTime");
 
-                    b.Property<int>("potentialCustomers");
+                    b.Property<DateTime>("hoursOfOperationEndTime");
+
+                    b.Property<DateTime>("hoursOfOperationStartTime");
+
+                    b.Property<string>("potentialCustomers");
 
                     b.Property<int>("rating");
 
@@ -151,19 +157,11 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("ApplicationId");
 
-                    b.Property<string>("DayOfTheWeek");
-
-                    b.Property<double>("DrinkPrice");
-
-                    b.Property<string>("MainTypeOfAlcohol");
-
-                    b.Property<string>("TimeHappyHourEnds");
-
-                    b.Property<string>("TimeHappyHourStarts");
-
-                    b.Property<string>("TypeOfdrink");
+                    b.Property<string>("drink");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
 
                     b.ToTable("DrinkSpecials");
                 });
@@ -276,6 +274,13 @@ namespace HappyHourTracker.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>
+                {
+                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

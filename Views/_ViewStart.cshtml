@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+﻿@{ if (this.User.IsInRole("DrinkConsumer"))
+=======
 ﻿@{
 
-    if (this.User.IsInRole("DrinkConsumer"))
+    if (this.User.IsInRole("DrinkEnthusiast"))
+
     {
         Layout = "~/Views/Shared/_LayoutDrinkConsumers.cshtml";
     }
@@ -12,6 +16,6 @@
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-}
 
+}
 
