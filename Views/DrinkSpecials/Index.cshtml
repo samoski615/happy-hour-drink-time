@@ -16,19 +16,16 @@
                 @Html.DisplayNameFor(model => model.DayOfTheWeek)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeOfdrink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MainTypeOfAlcohol)
+                @Html.DisplayNameFor(model => model.TypeOfDrink)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DrinkPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TimeHappyHourStarts)
+                @Html.DisplayNameFor(model => model.HappyHourStartTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TimeHappyHourEnds)
+                @Html.DisplayNameFor(model => model.HappyHourEndTime)
             </th>
             <th></th>
         </tr>
@@ -40,22 +37,19 @@
                 @Html.DisplayFor(modelItem => item.DayOfTheWeek)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeOfdrink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MainTypeOfAlcohol)
+                @Html.DisplayFor(modelItem => item.TypeOfDrink)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DrinkPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeHappyHourStarts)
+                @Html.DisplayFor(modelItem => item.HappyHourStartTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeHappyHourEnds)
+                @Html.DisplayFor(modelItem => item.HappyHourEndTime)
             </td>
+
             <td>
-                @*<input type="hidden" asp-for="ApplicationId" />*@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

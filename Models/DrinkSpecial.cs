@@ -13,28 +13,26 @@ namespace HappyHourTracker.Models
         public int Id { get; set; }
 
         [Display(Name = "Day that the drink special occurs:")]
-        public string DayOfTheWeek { get; set; }
+        public DayOfWeek DayOfTheWeek { get; set; }
 
-        [Display(Name = "Drink")]
-        public string TypeOfdrink { get; set; }
+        [Display(Name = "Type Of Drink")]
+        public string TypeOfDrink { get; set; }
 
-        [Display(Name = "Main alcohol in drink")]
-        public string MainTypeOfAlcohol { get; set; }
-
-        [Display(Name = "Price for HappyHour special")]
+        [Display(Name = "Drink Price")]
         public double DrinkPrice { get; set; }
 
-        [Display(Name = "Time that HappyHour starts")] 
-        public string TimeHappyHourStarts { get; set; }
+        [Display(Name = "Happy Hour Start Time")] 
+        public DateTime HappyHourStartTime { get; set; }
 
-        [Display(Name = "Time that HappyHour ends")]
-        public string TimeHappyHourEnds { get; set; }
+        [Display(Name = "Happy Hour End Time")]
+        public DateTime HappyHourEndTime { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
         public enum DayOfWeek { }
+
 
     }
 }
