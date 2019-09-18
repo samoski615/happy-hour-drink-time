@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HappyHourTracker.Data.Migrations
+namespace HappyHourTracker.Migrations
 {
-    public partial class testingaddingDrinkSpecialsmodel : Migration
+    public partial class newMigrationToFixDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
