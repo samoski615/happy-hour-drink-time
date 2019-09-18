@@ -8,7 +8,7 @@ namespace HappyHourTracker.Models
     public class StaticDetails
     {
         //creating Roles
-        public const string AdminEndUser = "Admin";
-        public const string SuperAdminEndUser = "Super Admin";
+        public const string DrinkEnthusiast = " Drink Enthusiast";
+        public const string BarOwner = "Bar Owner";
     }
 }

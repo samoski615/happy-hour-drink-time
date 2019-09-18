@@ -29,7 +29,7 @@ namespace HappyHourTracker.Models
         [Display(Name = "Zipcode")]
         public int zipcode { get; set; }
 
-        [Display(Name = "Favorite type of Bar")]
+        [Display(Name = "Enter Your FAVORITE type of Bar")]
         public string favoriteBarType { get; set; }
 
 
