@@ -1,0 +1,60 @@
+﻿@model HappyHourTracker.Models.DrinkSpecial
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DrinkSpecial</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DayOfTheWeek)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DayOfTheWeek)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfdrink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfdrink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MainTypeOfAlcohol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MainTypeOfAlcohol)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DrinkPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DrinkPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeHappyHourStarts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeHappyHourStarts)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeHappyHourEnds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeHappyHourEnds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
