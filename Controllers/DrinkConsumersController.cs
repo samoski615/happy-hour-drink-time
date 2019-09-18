@@ -13,9 +13,11 @@ namespace HappyHourTracker.Controllers
     public class DrinkConsumersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        DrinkConsumers drinkConsumers;
 
         public DrinkConsumersController(ApplicationDbContext context)
         {
+            drinkConsumers = new DrinkConsumers();
             _context = context;
         }
 
@@ -133,6 +135,27 @@ namespace HappyHourTracker.Controllers
 
             return View(drinkConsumers);
         }
+
+        public async void CheckingIn()
+        {
+            List<DrinkConsumers> drinker = new List<DrinkConsumers>();
+            if (drinkConsumers.CheckInStatus == true)
+            {
+                drinker.Add(drinkConsumers);           
+            }
+        }
+
+
+
+
+
+
+        public ActionResult GoogleMapAPI()
+        {
+            return View();
+        }
+
+
 
         // POST: DrinkConsumers/Delete/5
         [HttpPost, ActionName("Delete")]
