@@ -32,7 +32,8 @@ namespace HappyHourTracker.Models
         [Display(Name = "Favorite type of Bar")]
         public string favoriteBarType { get; set; }
 
-
+        [Display(Name = "Check-in Status")]
+        public bool CheckInStatus { get; set; }
 
     }
 }

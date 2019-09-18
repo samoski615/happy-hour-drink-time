@@ -134,6 +134,24 @@ namespace HappyHourTracker.Controllers
             return View(drinkConsumers);
         }
 
+        public async void CheckingIn()
+        {
+            List<DrinkConsumers> drinkers = new List<DrinkConsumers>();
+            if (drinkers. == true)
+            {
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         // POST: DrinkConsumers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

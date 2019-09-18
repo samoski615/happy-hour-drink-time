@@ -116,6 +116,22 @@ namespace HappyHourTracker.Controllers
             return View(bar);
         }
 
+
+        //public async void PotentialCustomers() //when people click the the check in box, the potential customers property in bar model will increment
+        //{//the method will be a bool, if checked = true else = false, if true add, else leave it alone
+        //    foreach(DrinkConsumers consumer in consumerList)
+        //    {
+        //        if(consumer.CheckInStatus == true)
+        //        PotentialCustomers++;
+        //    }
+        //}
+
+
+
+
+
+
+
         // GET: Bars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
