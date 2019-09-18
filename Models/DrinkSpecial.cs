@@ -24,7 +24,7 @@ namespace HappyHourTracker.Models
         [Display(Name = "Price for HappyHour special")]
         public double DrinkPrice { get; set; }
 
-        [Display(Name = "Time that HappyHour starts")]
+        [Display(Name = "Time that HappyHour starts")] 
         public string TimeHappyHourStarts { get; set; }
 
         [Display(Name = "Time that HappyHour ends")]
