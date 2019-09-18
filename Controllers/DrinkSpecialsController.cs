@@ -10,22 +10,22 @@ using HappyHourTracker.Models;
 
 namespace HappyHourTracker.Controllers
 {
-    public class BarsController : Controller
+    public class DrinkSpecialsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BarsController(ApplicationDbContext context)
+        public DrinkSpecialsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Bars
+        // GET: DrinkSpecials
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Bar.ToListAsync());
+            return View(await _context.DrinkSpecials.ToListAsync());
         }
 
-        // GET: Bars/Details/5
+        // GET: DrinkSpecials/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar
+            var drinkSpecial = await _context.DrinkSpecials
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (bar == null)
+            if (drinkSpecial == null)
             {
                 return NotFound();
             }
 
-            return View(bar);
+            return View(drinkSpecial);
         }
 
-        // GET: Bars/Create
+        // GET: DrinkSpecials/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Bars/Create
+        // POST: DrinkSpecials/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,barName,address,city,state,zipcode,atmosphere,rating,hoursOfOperationStartTime,hoursOfOperationEndTime,happyHourStartTime,happyHourEndTime,potentialCusotmers")] Bar bar)
+        public async Task<IActionResult> Create([Bind("Id ,DayOfTheWeek, TypeOfDrink, DrinkPrice, HappyHourStartTime, HappyHourEndTime, ApplicationId")] DrinkSpecial drinkSpecial)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(bar);
+                _context.Add(drinkSpecial);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(bar);
+            return View(drinkSpecial);
         }
 
-        // GET: Bars/Edit/5
+        // GET: DrinkSpecials/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar.FindAsync(id);
-            if (bar == null)
+            var drinkSpecial = await _context.DrinkSpecials.FindAsync(id);
+            if (drinkSpecial == null)
             {
                 return NotFound();
             }
-            return View(bar);
+            return View(drinkSpecial);
         }
 
-        // POST: Bars/Edit/5
+        // POST: DrinkSpecials/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,barName,address,city,state,zipcode,atmosphere,rating,hoursOfOperationStartTime,hoursOfOperationEndTime,happyHourStartTime,happyHourEndTime,potentialCusotmers")] Bar bar)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, DayOfTheWeek, TypeOfDrink, DrinkPrice, HappyHourStartTime, HappyHourEndTime, ApplicationId")] DrinkSpecial drinkSpecial)
         {
-            if (id != bar.Id)
+            if (id != drinkSpecial.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace HappyHourTracker.Controllers
             {
                 try
                 {
-                    _context.Update(bar);
+                    _context.Update(drinkSpecial);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BarExists(bar.Id))
+                    if (!DrinkSpecialExists(drinkSpecial.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace HappyHourTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(bar);
+            return View(drinkSpecial);
         }
 
-        // GET: Bars/Delete/5
+        // GET: DrinkSpecials/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar
+            var drinkSpecial = await _context.DrinkSpecials
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (bar == null)
+            if (drinkSpecial == null)
             {
                 return NotFound();
             }
 
-            return View(bar);
+            return View(drinkSpecial);
         }
 
-        // POST: Bars/Delete/5
+        // POST: DrinkSpecials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bar = await _context.Bar.FindAsync(id);
-            _context.Bar.Remove(bar);
+            var drinkSpecial = await _context.DrinkSpecials.FindAsync(id);
+            _context.DrinkSpecials.Remove(drinkSpecial);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BarExists(int id)
+        private bool DrinkSpecialExists(int id)
         {
-            return _context.Bar.Any(e => e.Id == id);
+            return _context.DrinkSpecials.Any(e => e.Id == id);
         }
     }
 }
