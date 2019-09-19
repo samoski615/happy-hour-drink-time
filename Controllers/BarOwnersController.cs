@@ -130,7 +130,11 @@ namespace HappyHourTracker.Controllers
             }
         }
 
+        public async void GettingRating()
+        {
 
+        }
+          
 
 
 

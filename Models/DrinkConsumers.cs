@@ -30,9 +30,8 @@ namespace HappyHourTracker.Models
         [Display(Name = "Check-in Status")]
         public bool CheckInStatus { get; set; }
 
+        [Display(Name = "Zipcode")]
         public string Zipcode { get; set; }
-
-     
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
