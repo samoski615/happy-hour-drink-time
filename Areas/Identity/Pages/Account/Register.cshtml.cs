@@ -125,7 +125,6 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     }
                     _logger.LogInformation("User created a new account with password.");
 
-                    //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
 
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

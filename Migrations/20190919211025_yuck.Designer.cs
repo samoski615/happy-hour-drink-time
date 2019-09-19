@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190919211025_yuck")]
+    partial class yuck
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,17 +120,9 @@ namespace HappyHourTracker.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BarOwnerId");
-
                     b.Property<int>("CustomerRating");
 
-                    b.Property<int>("DrinkConsumersId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("BarOwnerId");
-
-                    b.HasIndex("DrinkConsumersId");
 
                     b.ToTable("RatingsTable");
                 });
@@ -329,19 +323,6 @@ namespace HappyHourTracker.Migrations
                     b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationId");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.RatingsTable", b =>
-                {
-                    b.HasOne("HappyHourTracker.Models.BarOwner", "BarOwner")
-                        .WithMany()
-                        .HasForeignKey("BarOwnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HappyHourTracker.Models.DrinkConsumers", "DrinkConsumers")
-                        .WithMany()
-                        .HasForeignKey("DrinkConsumersId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
