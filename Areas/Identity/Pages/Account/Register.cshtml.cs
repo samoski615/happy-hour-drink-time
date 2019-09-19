@@ -66,7 +66,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
 
 
             [Display(Name = "To create a BAR OWNER ACCOUNT, CLICK BOX BELOW, then click REGISTER!")]
-            public bool isBarOwner { get; set; }
+            public bool IsBarOwner { get; set; }
 
 
             [Required]
@@ -103,33 +103,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-<<<<<<< HEAD
 
-                }
-                if (!await _roleManager.RoleExistsAsync(StaticDetails.BarOwner))
-
-                {
-                    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.BarOwner));
-
-                }
-                if (!await _roleManager.RoleExistsAsync(StaticDetails.BarOwner))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.BarOwner));
-                }
-
-
-                if (Input.isBarOwner)
-                {
-
-
-                    await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
-                }
-                else
-                {
-
-                    await _userManager.AddToRoleAsync(user, StaticDetails.DrinkConsumer);
-
-=======
                     if (!await _roleManager.RoleExistsAsync(StaticDetails.DrinkConsumer))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticDetails.DrinkConsumer));
@@ -166,36 +140,18 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
->>>>>>> 736a07610a0d60a228f9892c7cf8c55aa3207353
                 }
+
                 _logger.LogInformation("User created a new account with password.");
 
 
                 //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
 
-
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url.Page(
-                    "/Account/ConfirmEmail",
-                    pageHandler: null,
-                    values: new { userId = user.Id, code = code },
-                    protocol: Request.Scheme);
-
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return LocalRedirect(returnUrl);
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                // If we got this far, something failed, redisplay form
             }
+                return Page();
 
-            // If we got this far, something failed, redisplay form
-            return Page();
-
+            
         }
     }
 }
