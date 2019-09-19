@@ -10,12 +10,12 @@ using HappyHourTracker.Models;
 
 namespace HappyHourTracker.Controllers
 {
-    public class BarsController : Controller
+    public class BarOwnersController : Controller
     {
         private readonly ApplicationDbContext _context;
         BarOwner barOwner;
 
-        public BarsController(ApplicationDbContext context)
+        public BarOwnersController(ApplicationDbContext context)
         {
             barOwner = new BarOwner();
             _context = context;

@@ -30,7 +30,7 @@ namespace HappyHourTracker.Models
         [Display(Name = "Bar Atmosphere")]
         public string TypeOfBar { get; set; }
 
-        [Display(Name = "Rating")]
+        [Display(Name = " Average Rating")]
         public int Rating { get; set; }
 
         [Display(Name = "Bar open from: ")]
