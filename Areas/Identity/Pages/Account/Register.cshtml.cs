@@ -106,10 +106,12 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     if (Input.IsBarOwner)
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
+                        return RedirectToAction("Create", "BarOwners");
                     }
                     else
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.DrinkConsumer);
+                        return RedirectToAction("Create", "DrinkConsumers");
                     }
                     _logger.LogInformation("User created a new account with password.");
 

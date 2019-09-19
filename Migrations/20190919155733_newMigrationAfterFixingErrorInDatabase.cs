@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HappyHourTracker.Migrations
 {
-    public partial class newMigration : Migration
+    public partial class newMigrationAfterFixingErrorInDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,44 +50,16 @@ namespace HappyHourTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BarOwners",
+                name: "RatingsTable",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BarName = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Zipcode = table.Column<int>(nullable: false),
-                    TypeOfBar = table.Column<string>(nullable: true),
-                    Rating = table.Column<int>(nullable: false),
-                    BarOpen = table.Column<DateTime>(nullable: false),
-                    BarClose = table.Column<DateTime>(nullable: false),
-                    PotentialCustomers = table.Column<int>(nullable: false)
+                    CustomerRating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BarOwners", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Drinkers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Zipcode = table.Column<string>(nullable: true),
-                    CheckinStatus = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Drinkers", x => x.Id);
+                    table.PrimaryKey("PK_RatingsTable", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,6 +169,61 @@ namespace HappyHourTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BarOwners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BarName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Zipcode = table.Column<int>(nullable: false),
+                    TypeOfBar = table.Column<string>(nullable: true),
+                    Rating = table.Column<int>(nullable: false),
+                    BarOpen = table.Column<DateTime>(nullable: false),
+                    BarClose = table.Column<DateTime>(nullable: false),
+                    PotentialCustomers = table.Column<int>(nullable: false),
+                    ApplicationId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BarOwners", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BarOwners_AspNetUsers_ApplicationId",
+                        column: x => x.ApplicationId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Drinkers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    CheckInStatus = table.Column<bool>(nullable: false),
+                    Zipcode = table.Column<string>(nullable: true),
+                    ApplicationId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drinkers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Drinkers_AspNetUsers_ApplicationId",
+                        column: x => x.ApplicationId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DrinkSpecials",
                 columns: table => new
                 {
@@ -260,6 +287,16 @@ namespace HappyHourTracker.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BarOwners_ApplicationId",
+                table: "BarOwners",
+                column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Drinkers_ApplicationId",
+                table: "Drinkers",
+                column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DrinkSpecials_ApplicationId",
                 table: "DrinkSpecials",
                 column: "ApplicationId");
@@ -290,6 +327,9 @@ namespace HappyHourTracker.Migrations
 
             migrationBuilder.DropTable(
                 name: "DrinkSpecials");
+
+            migrationBuilder.DropTable(
+                name: "RatingsTable");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
