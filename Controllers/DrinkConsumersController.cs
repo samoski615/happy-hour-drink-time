@@ -136,7 +136,7 @@ namespace HappyHourTracker.Controllers
             return View(drinkConsumers);
         }
 
-        public async void CheckingIn()
+        public async void CheckingIn() //needs to use the await keyword
         {
             List<DrinkConsumers> drinker = new List<DrinkConsumers>();
             if (drinkConsumers.CheckInStatus == true)
