@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190919181726_added-foreignKey-to-ratingstable")]
+    partial class addedforeignKeytoratingstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,13 +120,9 @@ namespace HappyHourTracker.Migrations
 
                     b.Property<int>("CustomerRating");
 
-                    b.Property<int>("DrinkConsumersId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BarOwnerId");
-
-                    b.HasIndex("DrinkConsumersId");
 
                     b.ToTable("RatingsTable");
                 });
@@ -332,11 +330,6 @@ namespace HappyHourTracker.Migrations
                     b.HasOne("HappyHourTracker.Models.BarOwner", "BarOwner")
                         .WithMany()
                         .HasForeignKey("BarOwnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HappyHourTracker.Models.DrinkConsumers", "DrinkConsumers")
-                        .WithMany()
-                        .HasForeignKey("DrinkConsumersId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

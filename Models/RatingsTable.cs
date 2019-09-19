@@ -15,5 +15,13 @@ namespace HappyHourTracker.Models
         [Display(Name = "Customer Ratings")]
         public int CustomerRating { get; set; }
 
+        [ForeignKey("BarOwner")]
+        public int BarOwnerId { get; set; }
+        public BarOwner BarOwner { get; set; }
+
+        [ForeignKey("Drinkers")]
+        public int DrinkConsumersId { get; set; }
+        public DrinkConsumers DrinkConsumers { get; set; }
+
     }
 }

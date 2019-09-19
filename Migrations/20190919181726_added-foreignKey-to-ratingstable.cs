@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HappyHourTracker.Migrations
 {
-    public partial class newMigrationAfterFixingErrorInDatabase : Migration
+    public partial class addedforeignKeytoratingstable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,19 +47,6 @@ namespace HappyHourTracker.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RatingsTable",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerRating = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RatingsTable", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,6 +234,26 @@ namespace HappyHourTracker.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RatingsTable",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CustomerRating = table.Column<int>(nullable: false),
+                    BarOwnerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RatingsTable", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RatingsTable_BarOwners_BarOwnerId",
+                        column: x => x.BarOwnerId,
+                        principalTable: "BarOwners",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -300,6 +307,11 @@ namespace HappyHourTracker.Migrations
                 name: "IX_DrinkSpecials_ApplicationId",
                 table: "DrinkSpecials",
                 column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RatingsTable_BarOwnerId",
+                table: "RatingsTable",
+                column: "BarOwnerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -320,9 +332,6 @@ namespace HappyHourTracker.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BarOwners");
-
-            migrationBuilder.DropTable(
                 name: "Drinkers");
 
             migrationBuilder.DropTable(
@@ -333,6 +342,9 @@ namespace HappyHourTracker.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "BarOwners");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
