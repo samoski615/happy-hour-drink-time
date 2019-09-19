@@ -4,14 +4,16 @@ using HappyHourTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HappyHourTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190918163445_pulled updated work to work off of")]
+    partial class pulledupdatedworktoworkoffof
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,8 +60,6 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<string>("ApplicationId");
-
                     b.Property<bool>("CheckinStatus");
 
                     b.Property<string>("City");
@@ -73,8 +73,6 @@ namespace HappyHourTracker.Data.Migrations
                     b.Property<string>("Zipcode");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
 
                     b.ToTable("Drinkers");
                 });
@@ -279,13 +277,6 @@ namespace HappyHourTracker.Data.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>
-                {
-                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationId");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>

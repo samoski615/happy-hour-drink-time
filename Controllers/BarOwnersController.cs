@@ -22,7 +22,7 @@ namespace HappyHourTracker.Controllers
         // GET: Bars
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Bar.ToListAsync());
+            return View(await _context.BarOwners.ToListAsync());
         }
 
         // GET: Bars/Details/5
@@ -33,7 +33,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar
+            var bar = await _context.BarOwners
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bar == null)
             {
@@ -54,15 +54,15 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,barName,address,city,state,zipcode,atmosphere,rating,hoursOfOperationStartTime,hoursOfOperationEndTime,happyHourStartTime,happyHourEndTime,potentialCusotmers")] Bar bar)
+        public async Task<IActionResult> Create([Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose")] BarOwner barOwner)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(bar);
+                _context.Add(barOwner);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(bar);
+            return View(barOwner);
         }
 
         // GET: Bars/Edit/5
@@ -73,7 +73,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar.FindAsync(id);
+            var bar = await _context.BarOwners.FindAsync(id);
             if (bar == null)
             {
                 return NotFound();
@@ -86,9 +86,9 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,barName,address,city,state,zipcode,atmosphere,rating,hoursOfOperationStartTime,hoursOfOperationEndTime,happyHourStartTime,happyHourEndTime,potentialCusotmers")] Bar bar)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose")] BarOwner barOwner)
         {
-            if (id != bar.Id)
+            if (id != barOwner.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace HappyHourTracker.Controllers
             {
                 try
                 {
-                    _context.Update(bar);
+                    _context.Update(barOwner);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BarExists(bar.Id))
+                    if (!BarExists(barOwner.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace HappyHourTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(bar);
+            return View(barOwner);
         }
 
         // GET: Bars/Delete/5
@@ -124,7 +124,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.Bar
+            var bar = await _context.BarOwners
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bar == null)
             {
@@ -139,15 +139,15 @@ namespace HappyHourTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bar = await _context.Bar.FindAsync(id);
-            _context.Bar.Remove(bar);
+            var bar = await _context.BarOwners.FindAsync(id);
+            _context.BarOwners.Remove(bar);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BarExists(int id)
         {
-            return _context.Bar.Any(e => e.Id == id);
+            return _context.BarOwners.Any(e => e.Id == id);
         }
     }
 }

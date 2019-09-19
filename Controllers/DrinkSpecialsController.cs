@@ -54,7 +54,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DayOfTheWeek,TypeOfdrink,MainTypeOfAlcohol,DrinkPrice,TimeHappyHourStarts,TimeHappyHourEnds,ApplicationId")] DrinkSpecial drinkSpecial)
+        public async Task<IActionResult> Create([Bind("Id ,DayOfTheWeek, TypeOfDrink, DrinkPrice, HappyHourStartTime, HappyHourEndTime, ApplicationId")] DrinkSpecial drinkSpecial)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DayOfTheWeek,TypeOfdrink,MainTypeOfAlcohol,DrinkPrice,TimeHappyHourStarts,TimeHappyHourEnds,ApplicationId")] DrinkSpecial drinkSpecial)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, DayOfTheWeek, TypeOfDrink, DrinkPrice, HappyHourStartTime, HappyHourEndTime, ApplicationId")] DrinkSpecial drinkSpecial)
         {
             if (id != drinkSpecial.Id)
             {

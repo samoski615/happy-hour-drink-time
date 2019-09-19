@@ -16,23 +16,20 @@
                 @Html.DisplayNameFor(model => model.DayOfTheWeek)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeOfdrink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MainTypeOfAlcohol)
+                @Html.DisplayNameFor(model => model.TypeOfDrink)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DrinkPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TimeHappyHourStarts)
+                @Html.DisplayNameFor(model => model.HappyHourStartTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TimeHappyHourEnds)
+                @Html.DisplayNameFor(model => model.HappyHourEndTime)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ApplicationId)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -43,23 +40,20 @@
                 @Html.DisplayFor(modelItem => item.DayOfTheWeek)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeOfdrink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MainTypeOfAlcohol)
+                @Html.DisplayFor(modelItem => item.TypeOfDrink)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DrinkPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeHappyHourStarts)
+                @Html.DisplayFor(modelItem => item.HappyHourStartTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeHappyHourEnds)
+                @Html.DisplayFor(modelItem => item.HappyHourEndTime)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ApplicationId)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,27 +13,29 @@ namespace HappyHourTracker.Models
         public int Id { get; set; }
 
         [Display(Name = "First Name")]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
 
         [Display(Name = "Address")]
-        public string address { get; set; }
+        public string Address { get; set; }
 
         [Display(Name = "City")]
-        public string city { get; set; }
+        public string City { get; set; }
 
         [Display(Name = "State")]
-        public string state { get; set; }
+        public string State { get; set; }
 
         [Display(Name = "Zipcode")]
-        public int zipcode { get; set; }
+        public string Zipcode { get; set; }
 
-        [Display(Name = "Enter Your FAVORITE type of Bar")]
-        public string favoriteBarType { get; set; }
+        [Display(Name = "Number of customers who've checked in: ")]
+        public bool CheckinStatus { get; set; }
 
-
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
     }
 }

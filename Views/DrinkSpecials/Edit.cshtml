@@ -19,14 +19,9 @@
                 <span asp-validation-for="DayOfTheWeek" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeOfdrink" class="control-label"></label>
-                <input asp-for="TypeOfdrink" class="form-control" />
-                <span asp-validation-for="TypeOfdrink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MainTypeOfAlcohol" class="control-label"></label>
-                <input asp-for="MainTypeOfAlcohol" class="form-control" />
-                <span asp-validation-for="MainTypeOfAlcohol" class="text-danger"></span>
+                <label asp-for="TypeOfDrink" class="control-label"></label>
+                <input asp-for="TypeOfDrink" class="form-control" />
+                <span asp-validation-for="TypeOfDrink" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DrinkPrice" class="control-label"></label>
@@ -34,20 +29,20 @@
                 <span asp-validation-for="DrinkPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TimeHappyHourStarts" class="control-label"></label>
-                <input asp-for="TimeHappyHourStarts" class="form-control" />
-                <span asp-validation-for="TimeHappyHourStarts" class="text-danger"></span>
+                <label asp-for="HappyHourStartTime" class="control-label"></label>
+                <input asp-for="HappyHourStartTime" class="form-control" />
+                <span asp-validation-for="HappyHourStartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TimeHappyHourEnds" class="control-label"></label>
-                <input asp-for="TimeHappyHourEnds" class="form-control" />
-                <span asp-validation-for="TimeHappyHourEnds" class="text-danger"></span>
+                <label asp-for="HappyHourEndTime" class="control-label"></label>
+                <input asp-for="HappyHourEndTime" class="form-control" />
+                <span asp-validation-for="HappyHourEndTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="ApplicationId" class="control-label"></label>
                 <input asp-for="ApplicationId" class="form-control" />
                 <span asp-validation-for="ApplicationId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
