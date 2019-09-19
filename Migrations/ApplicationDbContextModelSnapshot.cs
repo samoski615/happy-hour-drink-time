@@ -20,13 +20,14 @@ namespace HappyHourTracker.Migrations
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
-
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address");
+
+                    b.Property<string>("ApplicationId");
 
                     b.Property<DateTime>("BarClose");
 
@@ -48,6 +49,8 @@ namespace HappyHourTracker.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationId");
+
                     b.ToTable("BarOwners");
                 });
 
@@ -59,7 +62,9 @@ namespace HappyHourTracker.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<bool>("CheckinStatus");
+                    b.Property<string>("ApplicationId");
+
+                    b.Property<bool>("CheckInStatus");
 
                     b.Property<string>("City");
 
@@ -72,6 +77,8 @@ namespace HappyHourTracker.Migrations
                     b.Property<string>("Zipcode");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
 
                     b.ToTable("Drinkers");
                 });
@@ -99,6 +106,19 @@ namespace HappyHourTracker.Migrations
                     b.HasIndex("ApplicationId");
 
                     b.ToTable("DrinkSpecials");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.RatingsTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerRating");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RatingsTable");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -276,6 +296,20 @@ namespace HappyHourTracker.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+                {
+                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>
+                {
+                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>

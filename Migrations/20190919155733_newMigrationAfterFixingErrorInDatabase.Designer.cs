@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HappyHourTracker.Data.Migrations
+namespace HappyHourTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190918142837_added-applicationUser-property-to-drink-specials-model")]
-    partial class addedapplicationUserpropertytodrinkspecialsmodel
+    [Migration("20190919155733_newMigrationAfterFixingErrorInDatabase")]
+    partial class newMigrationAfterFixingErrorInDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,48 +21,37 @@ namespace HappyHourTracker.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HappyHourTracker.Models.Bar", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("address");
-
-                    b.Property<string>("atmosphere");
-
-                    b.Property<string>("barName");
-
-                    b.Property<string>("city");
-
-                    b.Property<string>("hoursOfOperationEndTime");
-
-                    b.Property<string>("hoursOfOperationStartTime");
-
-                    b.Property<int>("potentialCustomers");
-
-                    b.Property<int>("rating");
-
-                    b.Property<string>("state");
-
-                    b.Property<int>("zipcode");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bar");
-                });
-
             modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("Address");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("ApplicationId");
+
+                    b.Property<DateTime>("BarClose");
+
+                    b.Property<string>("BarName");
+
+                    b.Property<DateTime>("BarOpen");
+
+                    b.Property<string>("City");
+
+                    b.Property<int>("PotentialCustomers");
+
+                    b.Property<int>("Rating");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("TypeOfBar");
+
+                    b.Property<int>("Zipcode");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
 
                     b.ToTable("BarOwners");
                 });
@@ -73,21 +62,25 @@ namespace HappyHourTracker.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("address");
+                    b.Property<string>("Address");
 
-                    b.Property<string>("city");
+                    b.Property<string>("ApplicationId");
 
-                    b.Property<string>("favoriteBarType");
+                    b.Property<bool>("CheckInStatus");
 
-                    b.Property<string>("firstName");
+                    b.Property<string>("City");
 
-                    b.Property<string>("lastName");
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("state");
+                    b.Property<string>("LastName");
 
-                    b.Property<int>("zipcode");
+                    b.Property<string>("State");
+
+                    b.Property<string>("Zipcode");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
 
                     b.ToTable("Drinkers");
                 });
@@ -100,23 +93,34 @@ namespace HappyHourTracker.Data.Migrations
 
                     b.Property<string>("ApplicationId");
 
-                    b.Property<string>("DayOfTheWeek");
+                    b.Property<int>("DayOfTheWeek");
 
                     b.Property<double>("DrinkPrice");
 
-                    b.Property<string>("MainTypeOfAlcohol");
+                    b.Property<DateTime>("HappyHourEndTime");
 
-                    b.Property<string>("TimeHappyHourEnds");
+                    b.Property<DateTime>("HappyHourStartTime");
 
-                    b.Property<string>("TimeHappyHourStarts");
-
-                    b.Property<string>("TypeOfdrink");
+                    b.Property<string>("TypeOfDrink");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationId");
 
                     b.ToTable("DrinkSpecials");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.RatingsTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerRating");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RatingsTable");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -294,6 +298,20 @@ namespace HappyHourTracker.Data.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.BarOwner", b =>
+                {
+                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId");
+                });
+
+            modelBuilder.Entity("HappyHourTracker.Models.DrinkConsumers", b =>
+                {
+                    b.HasOne("HappyHourTracker.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId");
                 });
 
             modelBuilder.Entity("HappyHourTracker.Models.DrinkSpecial", b =>
