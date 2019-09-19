@@ -12,7 +12,7 @@ namespace HappyHourTracker.Models
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Day that the drink special occurs:")]
+        [Display(Name = "Day that the drink special occurs: ")]
         public DayOfWeek DayOfTheWeek { get; set; }
 
         [Display(Name = "Type Of Drink")]
@@ -30,6 +30,5 @@ namespace HappyHourTracker.Models
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-
     }
 }

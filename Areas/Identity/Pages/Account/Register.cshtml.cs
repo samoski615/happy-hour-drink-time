@@ -64,8 +64,10 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             //public string PhoneNumber { get; set; }
 
 
+
             [Display(Name = "To create a BAR OWNER ACCOUNT, CLICK BOX BELOW, then click REGISTER!")]
             public bool isBarOwner { get; set; }
+
 
             [Required]
             [EmailAddress]
@@ -102,44 +104,50 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
 
-                    if (!await _roleManager.RoleExistsAsync(StaticDetails.DrinkEnthusiast))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(StaticDetails.DrinkEnthusiast));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(StaticDetails.BarOwner))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(StaticDetails.BarOwner));
-
-                    }
-
-                    if (Input.isBarOwner)
-                    {
-
-                        await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, StaticDetails.DrinkEnthusiast);
-
-                    }
-                    _logger.LogInformation("User created a new account with password.");
-
-                    //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
-
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { userId = user.Id, code = code },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
                 }
+                if (!await _roleManager.RoleExistsAsync(StaticDetails.BarOwner))
+
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.BarOwner));
+
+                }
+                if (!await _roleManager.RoleExistsAsync(StaticDetails.BarOwner))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(StaticDetails.BarOwner));
+                }
+
+
+                if (Input.isBarOwner)
+                {
+
+
+                    await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
+                }
+                else
+                {
+
+                    await _userManager.AddToRoleAsync(user, StaticDetails.DrinkConsumer);
+
+                }
+                _logger.LogInformation("User created a new account with password.");
+
+
+                //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
+
+
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.Page(
+                    "/Account/ConfirmEmail",
+                    pageHandler: null,
+                    values: new { userId = user.Id, code = code },
+                    protocol: Request.Scheme);
+
+                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(returnUrl);
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -148,6 +156,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+
         }
     }
 }

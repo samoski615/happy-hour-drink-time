@@ -1,8 +1,8 @@
-﻿@{ if (this.User.IsInRole("DrinkConsumer"))
+﻿@{ if (this.User.IsInRole("Drink Consumer"))
     {
         Layout = "~/Views/Shared/_LayoutDrinkConsumers.cshtml";
     }
-    else if (this.User.IsInRole("BarOwner"))
+    else if (this.User.IsInRole("Bar Owner"))
     {
         Layout = "~/Views/Shared/_LayoutBarOwner.cshtml";
     }
