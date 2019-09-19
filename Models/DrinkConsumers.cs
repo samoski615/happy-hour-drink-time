@@ -37,11 +37,11 @@ namespace HappyHourTracker.Models
         [Display(Name = "Zipcode")]
         public string Zipcode { get; set; }
 
-     
-
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
+       
 
     }
 }

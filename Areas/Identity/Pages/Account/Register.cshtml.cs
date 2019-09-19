@@ -27,6 +27,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
         private readonly ApplicationDbContext _context;
 
         public RegisterModel(
+
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
@@ -50,6 +51,11 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+
+
+
+
             //[Required]
             //public string Name { get; set; }
 
@@ -57,8 +63,11 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             //[Display(Name = "Phone Number")]
             //public string PhoneNumber { get; set; }
 
-            [Display(Name = "If you're a bar owner please check this box")]
+
+
+            [Display(Name = "To create a BAR OWNER ACCOUNT, CLICK BOX BELOW, then click REGISTER!")]
             public bool IsBarOwner { get; set; }
+
 
             [Required]
             [EmailAddress]
@@ -94,6 +103,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+
                     if (!await _roleManager.RoleExistsAsync(StaticDetails.DrinkConsumer))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticDetails.DrinkConsumer));
@@ -130,14 +140,17 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
 
-            // If we got this far, something failed, redisplay form
-            return Page();
+                _logger.LogInformation("User created a new account with password.");
+
+
+                //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
+
+                // If we got this far, something failed, redisplay form
+            }
+                return Page();
+
+            
         }
     }
 }

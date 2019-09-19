@@ -130,6 +130,33 @@ namespace HappyHourTracker.Controllers
             }
         }
 
+        public async void RatingBar()//this method allows for 1 customer to have 1 rating for 1 bar
+        {
+            RatingsTable ratings = new RatingsTable();
+            var gettingCustomerID = ratings.DrinkConsumersId;
+            var gettingBarOwnerID = ratings.BarOwnerId;
+            if (gettingCustomerID == gettingBarOwnerID)
+            {
+                _context.Update(ratings);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async void AvegarginRating()//This method will get all the ratings from the same bar and average them
+        {
+            List<int> ratings = new List<int>();
+            RatingsTable ratingsTable = new RatingsTable();
+            foreach (var rate in _context.RatingsTable)
+            {
+                if (ratingsTable.BarOwnerId == ratingsTable.BarOwnerId)
+                {
+                    ratings.Add(ratingsTable.CustomerRating);
+                }
+            }
+            ratings.Average();
+            _context.Update(ratings);
+            await _context.SaveChangesAsync();
+        }
 
 
 
