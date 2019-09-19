@@ -106,7 +106,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     if (Input.IsBarOwner)
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
-                        return RedirectToAction("Create", "DrinkConsumers");
+                        return RedirectToAction("Create", "BarOwners");
                     }
                     else
                     {
