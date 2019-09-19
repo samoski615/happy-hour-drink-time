@@ -24,7 +24,14 @@ namespace HappyHourTracker.Controllers
         // GET: Bars
         public async Task<IActionResult> Index()
         {
+            //IEnumerable<BarOwner> gettingBarOwner = _context.BarOwners;
+            //var gettingBarOwner = await _context.BarOwners.Where(b => b.Id == barOwner.Id).FirstOrDefaultAsync();
             return View(await _context.BarOwners.ToListAsync());
+
+
+            //var employeeUserId = User.Identity.GetUserId();
+            //var employeeInfo = db.Employees.Where(c => c.ApplicationId.ToString() == employeeUserId);
+            //return View(employeeInfo);
         }
 
         // GET: Bars/Details/5
@@ -35,7 +42,7 @@ namespace HappyHourTracker.Controllers
                 return NotFound();
             }
 
-            var bar = await _context.BarOwners
+            var bar = await _context.BarOwners.Where(b => b.Id == barOwner.Id)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bar == null)
             {
@@ -56,7 +63,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose")] BarOwner barOwner)
+        public async Task<IActionResult> Create([Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose, ApplicationId")] BarOwner barOwner)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +95,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose")] BarOwner barOwner)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose, ApplicationId")] BarOwner barOwner)
         {
             if (id != barOwner.Id)
             {
@@ -157,10 +164,6 @@ namespace HappyHourTracker.Controllers
             _context.Update(ratings);
             await _context.SaveChangesAsync();
         }
-
-
-
-
 
 
         // GET: Bars/Delete/5
