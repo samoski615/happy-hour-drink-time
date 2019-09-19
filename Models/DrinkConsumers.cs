@@ -21,6 +21,10 @@ namespace HappyHourTracker.Models
         [Display(Name = "Address")]
         public string Address { get; set; }
 
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
+
         [Display(Name = "City")]
         public string City { get; set; }
 
@@ -30,6 +34,7 @@ namespace HappyHourTracker.Models
         [Display(Name = "Check-in Status")]
         public bool CheckInStatus { get; set; }
 
+        [Display(Name = "Zipcode")]
         public string Zipcode { get; set; }
 
      
