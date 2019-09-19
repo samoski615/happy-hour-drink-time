@@ -144,16 +144,16 @@ namespace HappyHourTracker.Controllers
 
         public async void AvegarginRating()//This method will get all the ratings from the same bar and average them
         {
-            List<int> ratings = new List<int>();
-            RatingsTable ratingsTable = new RatingsTable();
-           foreach(int CustomerRating in ratingsTable)
-            {
-                if (ratingsTable.BarOwnerId == ratingsTable.BarOwnerId)
-                {
+           // List<int> ratings = new List<int>();
+           // RatingsTable ratingsTable = new RatingsTable();
+           //foreach(int CustomerRating in ratingsTable)
+           // {
+           //     if (ratingsTable.BarOwnerId == ratingsTable.BarOwnerId)
+           //     {
                     
 
-                }
-            }
+           //     }
+           // }
         }
           
 

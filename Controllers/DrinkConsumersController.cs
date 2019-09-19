@@ -62,7 +62,7 @@ namespace HappyHourTracker.Controllers
             {
                 _context.Add(drinkConsumers);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create");
             }
             return View(drinkConsumers);
         }

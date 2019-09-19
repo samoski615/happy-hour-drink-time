@@ -37,5 +37,7 @@ namespace HappyHourTracker.Models
         public string ApplicationId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
+       
+
     }
 }

@@ -1,7 +1,9 @@
 
 ﻿@{
 
+
     if (this.User.IsInRole("Drink Consumer"))
+
     {
         Layout = "~/Views/Shared/_LayoutDrinkConsumers.cshtml";
     }
@@ -13,5 +15,6 @@
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
+
 }
 
