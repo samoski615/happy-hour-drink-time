@@ -145,6 +145,19 @@ namespace HappyHourTracker.Controllers
             }
         }
 
+        public int RatingBar(int id)
+        {
+            RatingsTable ratingsTable = new RatingsTable();
+            var customer = drinkConsumers.ApplicationId;
+            var customersRating = ratingsTable.ApplicationId;
+            if(customer == customersRating)
+            {
+                return ratingsTable.CustomerRating;
+            }
+            return ratingsTable.CustomerRating;
+     
+        }
+
 
 
 
