@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HappyHourTracker.Migrations
 {
-    public partial class addedforeignKeytoratingstable : Migration
+    public partial class updatingmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -193,6 +193,8 @@ namespace HappyHourTracker.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
+                    Latitude = table.Column<double>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     CheckInStatus = table.Column<bool>(nullable: false),
@@ -240,8 +242,9 @@ namespace HappyHourTracker.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerRating = table.Column<int>(nullable: false),
-                    BarOwnerId = table.Column<int>(nullable: false)
+                    BarOwnerId = table.Column<int>(nullable: false),
+                    DrinkConsumersId = table.Column<int>(nullable: false),
+                    CustomerRating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -250,6 +253,12 @@ namespace HappyHourTracker.Migrations
                         name: "FK_RatingsTable_BarOwners_BarOwnerId",
                         column: x => x.BarOwnerId,
                         principalTable: "BarOwners",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RatingsTable_Drinkers_DrinkConsumersId",
+                        column: x => x.DrinkConsumersId,
+                        principalTable: "Drinkers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -312,6 +321,11 @@ namespace HappyHourTracker.Migrations
                 name: "IX_RatingsTable_BarOwnerId",
                 table: "RatingsTable",
                 column: "BarOwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RatingsTable_DrinkConsumersId",
+                table: "RatingsTable",
+                column: "DrinkConsumersId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -332,9 +346,6 @@ namespace HappyHourTracker.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Drinkers");
-
-            migrationBuilder.DropTable(
                 name: "DrinkSpecials");
 
             migrationBuilder.DropTable(
@@ -345,6 +356,9 @@ namespace HappyHourTracker.Migrations
 
             migrationBuilder.DropTable(
                 name: "BarOwners");
+
+            migrationBuilder.DropTable(
+                name: "Drinkers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
