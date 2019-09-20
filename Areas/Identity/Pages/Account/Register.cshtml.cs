@@ -62,6 +62,8 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             [Display(Name = "To create a BAR OWNER ACCOUNT, CLICK BOX BELOW, then click REGISTER!")]
             public bool IsBarOwner { get; set; }
 
+            //give the user an application Id here and bring it to the other methods
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -77,6 +79,10 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            //public string ApplicationId { get; set; }
+            //public ApplicationUser ApplicationUser { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -109,12 +115,12 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     if (Input.IsBarOwner)
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.BarOwner);
-                        return RedirectToAction("Create", "BarOwners");
+                        return RedirectToAction("Create", "BarOwners", new { id = user.Id });
                     }
                     else
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.DrinkConsumer);
-                        return RedirectToAction("Create", "DrinkConsumers");
+                        return RedirectToAction("Create", "DrinkConsumers", new { id = user.Id });
                     }
                     _logger.LogInformation("User created a new account with password.");
 
