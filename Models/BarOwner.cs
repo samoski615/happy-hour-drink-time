@@ -34,6 +34,7 @@ namespace HappyHourTracker.Models
         public int Rating { get; set; }
 
         [Display(Name = "Bar open from: ")]
+        //[DisplayFormat(DataFormatString = "{ hh.mm tt}", ApplyFormatInEditMode = true)]
         public DateTime BarOpen { get; set; }
 
         [Display(Name = "Bar closes at: ")]

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HappyHourTracker.Data;
 using HappyHourTracker.Models;
+using System.Security.Claims;
 
 namespace HappyHourTracker.Controllers
 {
@@ -24,25 +25,29 @@ namespace HappyHourTracker.Controllers
         // GET: Bars
         public async Task<IActionResult> Index()
         {
-            return View(await _context.BarOwners.ToListAsync());
+            //IEnumerable<BarOwner> gettingBarOwner = _context.BarOwners;
+            //var gettingBarOwner = await _context.BarOwners.Where(b => b.Id == barOwner.Id).FirstOrDefaultAsync();
+            //return View(await _context.BarOwners.ToListAsync());
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            var bar = _context.BarOwners.FirstOrDefault(b => b.Id == barOwner.Id);
+            return View(bar);
         }
 
         // GET: Bars/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
             if (id == null)
             {
                 return NotFound();
             }
-
-            var bar = await _context.BarOwners
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (bar == null)
+            if (currentUserId == null)
             {
                 return NotFound();
             }
-
-            return View(bar);
+            
+            return View(currentUserId);
         }
 
         // GET: Bars/Create
@@ -56,14 +61,19 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose")] BarOwner barOwner)
+        public async Task<IActionResult> Create([Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose, ApplicationId")] BarOwner barOwner)
         {
+
+            //assign a foreign key to bar owner before if
+            barOwner.ApplicationId = User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+
             if (ModelState.IsValid)
             {
                 _context.Add(barOwner);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details));
             }
+
             return View(barOwner);
         }
 
@@ -88,7 +98,7 @@ namespace HappyHourTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose")] BarOwner barOwner)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, BarName, Address, City, State, Zipcode, TypeOfBar, BarOpen, BarClose, ApplicationId")] BarOwner barOwner)
         {
             if (id != barOwner.Id)
             {
@@ -129,14 +139,6 @@ namespace HappyHourTracker.Controllers
                 }
             }
         }
-
-        public async void GettingRating()
-        {
-
-        }
-          
-
-
 
 
 

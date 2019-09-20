@@ -145,12 +145,6 @@ namespace HappyHourTracker.Controllers
             }
         }
 
-       
-
-
-
-
-
 
         public ActionResult GoogleMapAPI()
         {

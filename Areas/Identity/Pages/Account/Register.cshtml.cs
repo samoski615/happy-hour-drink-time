@@ -52,10 +52,6 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-
-
-
-
             //[Required]
             //public string Name { get; set; }
 
@@ -63,11 +59,8 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
             //[Display(Name = "Phone Number")]
             //public string PhoneNumber { get; set; }
 
-
-
             [Display(Name = "To create a BAR OWNER ACCOUNT, CLICK BOX BELOW, then click REGISTER!")]
             public bool IsBarOwner { get; set; }
-
 
             [Required]
             [EmailAddress]
@@ -125,8 +118,6 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     }
                     _logger.LogInformation("User created a new account with password.");
 
-                    //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
-
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
@@ -142,10 +133,7 @@ namespace HappyHourTracker.Areas.Identity.Pages.Account
                     return LocalRedirect(returnUrl);
                 }
 
-                _logger.LogInformation("User created a new account with password.");
-
-
-                //ViewBag.Name = new SelectList(_context.Roles.ToList(), "Name", "Name");
+                 _logger.LogInformation("User created a new account with password.");
 
                 // If we got this far, something failed, redisplay form
             }
